@@ -1,69 +1,81 @@
-#ifndef PARSER_H
-#define PARSER_H
-
-#include <string>
 #include <iostream>
+#include <string>
 #include <vector>
 
-enum class LITERAL_TYPE {
-    INT = 0,
-    DOUBLE = 1
+struct _Atom {
+    virtual std::string toString() = 0;
 };
 
-struct INTEGER_LITERAL {
+enum class _Structure_Type {
+    _Left_Parens = 1,
+    _Right_Parens = 2
+};
+
+struct _Structure : _Atom {
+    _Structure(_Structure_Type);
+    _Structure(std::string);
+    std::string toString();
+
+protected:
+    _Structure_Type value;
+};
+
+enum class _Operator_Type {
+    _Addition = 1,
+    _Subtraction = 2,
+    _Multiplication = 3,
+    _Division = 4,
+};
+
+struct _Operator : _Atom {
+    _Operator(_Operator_Type);
+    std::string toString();
+
+protected:
+    _Operator_Type type;
+};
+
+struct _Number : _Atom {
+    virtual std::string toString() = 0;
+};
+
+struct _Integer : _Number {
+    _Integer(int);
+    _Integer(std::string);
+    _Integer operator+ (_Integer);
+    _Integer operator* (_Integer);
+    bool operator== (_Integer);
+    std::string toString();
+
+protected:
     int value;
-
-    INTEGER_LITERAL(int);
 };
 
-struct DOUBLE_LITERAL{
+struct _Decimal : _Number {
+    _Decimal(double);
+    _Decimal(std::string);
+    _Decimal operator+ (_Decimal);
+    _Decimal operator* (_Decimal);
+    std::string toString();
+
+protected:
     double value;
-
-    DOUBLE_LITERAL(double);
 };
 
-enum class OPERATOR_TYPE {
-    ADDITION,
-    SUBTRACTION,
-    MULTIPLICATION,
-    DIVISION
+struct _Expression {
+    _Expression(_Operator, std::vector<std::shared_ptr<_Number>>);
+    std::string toString(); 
+
+protected:
+    _Operator op;
+    std::vector<std::shared_ptr<_Number>> argList;
 };
 
-enum class ATOM_TYPE {
-    LITERAL,
-    OPERATOR
-};
+std::vector<std::string> parseIntoStringVector(std::string);
+std::vector<std::shared_ptr<_Atom> > convertStringVectorIntoAtomVector(std::vector<std::string>);
 
-struct OPERATOR {
-    OPERATOR_TYPE operatorType;
-
-    OPERATOR(char);
-};
-
-struct LITERAL {
-    LITERAL_TYPE literalType;
-    union {
-        INTEGER_LITERAL i;
-        DOUBLE_LITERAL d;
-    };
-
-    LITERAL(double);
-    LITERAL(int);
-
-    void setType(LITERAL_TYPE);
-    void setValue(int);
-    void setValue(double);
-};
-
-struct EXPRESSION {
-    OPERATOR op;
-    std::vector<LITERAL> argList;
-
-    EXPRESSION(OPERATOR, std::vector<LITERAL>);
-};
-
-int parse(std::string);
-
-OPERATOR_TYPE operatorType(std::string);
-
-#endif
+void _Structure_Assertions();
+void _Operator_Assertions();
+void _Integer_Assertions();
+void _Decimal_Assertions();
+void _Parser_CPP_Assertions();

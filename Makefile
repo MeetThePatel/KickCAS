@@ -1,5 +1,6 @@
 CXX ?= g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -g -O3
+CXXFLAGS_V = -std=c++17 -Wall -Wextra -g -O3
+CXXFLAGS = -std=c++17 -g -O3
 INCLUDES = -I include/ -I /usr/local/include
 
 SRC_PATH = src
