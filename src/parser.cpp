@@ -23,6 +23,7 @@ std::string _Structure::toString() {
         case _Structure_Type::_Right_Parens:
             return ")";
             break;
+        default: break;
     }
 }
 
@@ -89,7 +90,7 @@ std::string _Decimal::toString() {
     return str;
 }
 
-_Expression::_Expression(_Operator x, std::vector<std::shared_ptr<_Number>> y) : op(x), argList(y) {
+_Expression::_Expression(_Operator x, std::vector<std::shared_ptr<_Number> > y) : op(x), argList(y) {
     this->op = x;
     this->argList = y;
 }
@@ -141,6 +142,7 @@ std::vector<std::shared_ptr<_Atom> > convertStringVectorIntoAtomVector(std::vect
             }
         }
     }
+    return ret;
 }
 
 void _Structure_Assertions() {

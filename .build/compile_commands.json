@@ -1,0 +1,12 @@
+[
+  {
+    "directory": "/Users/meetpatel/Projects/KickCAS/.build",
+    "command": "c++ -IKickCAS@exe -I. -I.. -I../include -Xclang -fcolor-diagnostics -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -g  -MD -MQ 'KickCAS@exe/src_main.cpp.o' -MF 'KickCAS@exe/src_main.cpp.o.d' -o 'KickCAS@exe/src_main.cpp.o' -c ../src/main.cpp",
+    "file": "../src/main.cpp"
+  },
+  {
+    "directory": "/Users/meetpatel/Projects/KickCAS/.build",
+    "command": "c++ -IKickCAS@exe -I. -I.. -I../include -Xclang -fcolor-diagnostics -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++17 -g  -MD -MQ 'KickCAS@exe/src_parser.cpp.o' -MF 'KickCAS@exe/src_parser.cpp.o.d' -o 'KickCAS@exe/src_parser.cpp.o' -c ../src/parser.cpp",
+    "file": "../src/parser.cpp"
+  }
+]

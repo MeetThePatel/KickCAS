@@ -63,12 +63,12 @@ protected:
 };
 
 struct _Expression {
-    _Expression(_Operator, std::vector<std::shared_ptr<_Number>>);
+    _Expression(_Operator, std::vector<std::shared_ptr<_Number> >);
     std::string toString(); 
 
 protected:
     _Operator op;
-    std::vector<std::shared_ptr<_Number>> argList;
+    std::vector<std::shared_ptr<_Number> > argList;
 };
 
 std::vector<std::string> parseIntoStringVector(std::string);
